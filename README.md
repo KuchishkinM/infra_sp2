@@ -1,4 +1,4 @@
-# API YAMDB
+# Infra_sp2
 
 ## Описание
 
@@ -21,50 +21,39 @@ http://127.0.0.1:8000/redoc/
 Клонировать репозиторий и перейти в него в командной строке:
 
 ```
-git clone https://github.com/KuchishkinM/api_yamdb
+git clone https://github.com/KuchishkinM/infra_sp2
 ```
 
 ```
-cd api_yamdb
+cd infra_sp2
 ```
 
-Cоздать и активировать виртуальное окружение:
+Запустить docker-compose:
 
 ```
-python -m venv venv
+docker-compose up -d --build 
 ```
 
-```
-source venv/Scripts/activate
-```
-
-```
-python -m pip install --upgrade pip
-```
-
-Установить зависимости из файла requirements.txt:
-
-```
-pip install -r requirements.txt
-```
 
 Выполнить миграции:
 
 ```
-python manage.py migrate
+docker-compose exec web python manage.py migrate
 ```
 
-Загрузить БД данными:
+Создать суперпользователя:
 
 ```
-python manage.py import_db
+docker-compose exec web python manage.py createsuperuser
 ```
 
-Запустить проект:
+Подгрузить статику:
 
 ```
-python manage.py runserver
+docker-compose exec web python manage.py collectstatic --no-input 
 ```
+
+
 
 ## Что использовалось для создания проекта:
 
@@ -72,10 +61,8 @@ python manage.py runserver
 - Django
 - Django REST framework
 - JWT token
-- SQLite
-
+- PostgreSQL
+- Docker
 ## Авторы:
 
-- Надежда Шестёра
-- Алексей Чиненков
 - Максим Кучишкин
