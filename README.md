@@ -7,7 +7,7 @@
 
 ## Документация REDOC
 
-http://127.0.0.1:8000/redoc/
+http://localhost/redoc/
 
 ## Этот проект позволит Вам:
 
@@ -26,6 +26,12 @@ git clone https://github.com/KuchishkinM/infra_sp2
 
 ```
 cd infra_sp2
+
+```
+Загрузить БД данными:
+
+```
+python manage.py import_db
 ```
 
 Запустить docker-compose:
@@ -53,7 +59,11 @@ docker-compose exec web python manage.py createsuperuser
 docker-compose exec web python manage.py collectstatic --no-input 
 ```
 
+Загрузить БД данныйми:
 
+```
+docker-compose exec web python manage.py import.db
+```
 
 ## Что использовалось для создания проекта:
 
@@ -63,6 +73,6 @@ docker-compose exec web python manage.py collectstatic --no-input
 - JWT token
 - PostgreSQL
 - Docker
-## Автор:
+## Авторы:
 
 - Максим Кучишкин
